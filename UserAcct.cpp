@@ -77,7 +77,7 @@ int UserAcct::sendUpdatePacket(PluginContext *context)
 				ra7(ATTRIB_NAS_Port_Type),
 				ra8(ATTRIB_Service_Type),
 				ra9(ATTRIB_Acct_Session_ID, this->getSessionId()),
-				ra10(ATTRIB_Acct_Status_Type,string("3")),
+		                ra10(ATTRIB_Acct_Status_Type,string("3")), // "Alive"
 				ra11(ATTRIB_Framed_Protocol),
 				ra12(ATTRIB_Acct_Input_Octets, this->bytesin),
 				ra13(ATTRIB_Acct_Output_Octets, this->bytesout),
@@ -256,7 +256,7 @@ int UserAcct::sendStartPacket(PluginContext * context)
 						ra7(ATTRIB_NAS_Port_Type),
 						ra8(ATTRIB_Service_Type),
 						ra9(ATTRIB_Acct_Session_ID, this->getSessionId()),
-						ra10(ATTRIB_Acct_Status_Type,string("1")),
+		                                ra10(ATTRIB_Acct_Status_Type,string("1")), // "Start"
 						ra11(ATTRIB_Framed_Protocol);
 				
 	
@@ -408,7 +408,7 @@ int UserAcct::sendStopPacket(PluginContext * context)
 				ra7(ATTRIB_NAS_Port_Type),
 				ra8(ATTRIB_Service_Type),
 				ra9(ATTRIB_Acct_Session_ID, this->getSessionId()),
-				ra10(ATTRIB_Acct_Status_Type,string("2")),
+		                ra10(ATTRIB_Acct_Status_Type,string("2")), // "Stop"
 				ra11(ATTRIB_Framed_Protocol),
 				ra12(ATTRIB_Acct_Input_Octets, this->bytesin),
 				ra13(ATTRIB_Acct_Output_Octets, this->bytesout),
@@ -574,7 +574,7 @@ void UserAcct::delSystemRoutes(PluginContext * context)
 	framedroutes=new char[this->getFramedRoutes().size()+1];
 	memset(framedroutes,0,this->getFramedRoutes().size()+1);
 	
-	// copy in a temp-string, becaue strtok deletes the delimiter, if it used anywhere
+	// copy in a temp-string, because strtok deletes the delimiter, if it used anywhere
 	strncpy(framedroutes,this->getFramedRoutes().c_str(),this->getFramedRoutes().size());
 	
 	//are there framed routes
@@ -583,9 +583,9 @@ void UserAcct::delSystemRoutes(PluginContext * context)
 		//get the first route
 		route=strtok(framedroutes,";");
 		len=strlen(route);
-		if (len > 50) //this is to big!! but the length is variable
+		if (len > 50) //this is too big!! but the length is variable
 		{
-			cerr << getTime() <<"RADIUS-PLUGIN: BACKGROUND-ACCT:  Argument for Framed Route is to long (>100 Characters).\n";
+			cerr << getTime() <<"RADIUS-PLUGIN: BACKGROUND-ACCT:  Argument for Framed Route is too long (>50 Characters).\n";
 		}
 		else
 		{
