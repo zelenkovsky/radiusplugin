@@ -186,7 +186,7 @@ TROUBLESHOOTING
 		in the config file of the plugin to a existing dummy directory.
 		
 - Compiling fails on Solaris 10:
-	- add following options: -lsocket -lnsl -lresolv -fPIC -DPIC
+	- add following options: -lsocket -lnsl -lresolv
 	
 - Values for BytesIn/BytesOut are 0 in the accounting log of the RADIUS server:
 	- Make sure that the status file of OpenVPN exist and the plugin can read it.
