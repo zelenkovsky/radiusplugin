@@ -147,7 +147,7 @@ int UserAuth::sendAcceptRequestPacket(PluginContext * context)
 	//send the packet
 	if (packet.radiusSend( server, context->radiusconf.getNASIpAddress() )<0)
 	{
-		cerr << getTime() << "RADIUS-PLUGIN: Packet was not send.\n";
+		cerr << getTime() << "RADIUS-PLUGIN: Packet was not sent.\n";
 	}
 	//receive the packet
 	if (packet.radiusReceive(serverlist, context->radiusconf.getNASIpAddress() )==0)
@@ -166,7 +166,7 @@ int UserAuth::sendAcceptRequestPacket(PluginContext * context)
 		}
 		else
 		{
-			cerr << getTime() << "RADIUS-PLUGIN: Get ACCESS_REJECT or ACCESS_CHALLANGE-Packet.->ACCESS-DENIED.\n";
+			cerr << getTime() << "RADIUS-PLUGIN: Get ACCESS_REJECT or ACCESS_CHALLENGE-Packet.->ACCESS-DENIED.\n";
 			return 1;
 		}
 		

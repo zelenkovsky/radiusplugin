@@ -199,7 +199,7 @@ int UserAcct::sendUpdatePacket(PluginContext *context)
 	//send the packet to the server
 	if (packet.radiusSend( server, context->radiusconf.getNASIpAddress() )<0)
 	{
-		cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND-ACCT:  Packet was not send.\n";
+		cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND-ACCT:  Packet was not sent.\n";
 	}
 	
 	//get the response
@@ -209,7 +209,7 @@ int UserAcct::sendUpdatePacket(PluginContext *context)
 		if(packet.getCode()==ACCOUNTING_RESPONSE)
 		{
 			if (DEBUG (context->getVerbosity()))
-				cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND-ACCT: Get ACCOUNTING_RESPONSET-Packet.\n";
+				cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND-ACCT: Get ACCOUNTING_RESPONSE-Packet.\n";
 
 		
 			return 0;
@@ -346,7 +346,7 @@ int UserAcct::sendStartPacket(PluginContext * context)
 	//send the packet	
 	if (packet.radiusSend( server, context->radiusconf.getNASIpAddress() )<0)
 	{
-		cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND-ACCT:  Packet was not send.\n";
+		cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND-ACCT:  Packet was not sent.\n";
 	}
 	
 	//receive the response
@@ -356,7 +356,7 @@ int UserAcct::sendStartPacket(PluginContext * context)
 		if(packet.getCode()==ACCOUNTING_RESPONSE)
 		{
 			if (DEBUG (context->getVerbosity()))
-				cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND-ACCT:  Get ACCOUNTING_RESPONSET-Packet.\n";
+				cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND-ACCT:  Get ACCOUNTING_RESPONSE-Packet.\n";
 
 			return 0;
 			
@@ -528,7 +528,7 @@ int UserAcct::sendStopPacket(PluginContext * context)
 	//send the packet
 	if (packet.radiusSend( server, context->radiusconf.getNASIpAddress() )<0)
 	{
-		cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND-ACCT:  Packet was not send.\n";
+		cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND-ACCT:  Packet was not sent.\n";
 	}
 	
 	//get the response
