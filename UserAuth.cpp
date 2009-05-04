@@ -1473,7 +1473,7 @@ int UserAuth::createCcdFile(PluginContext *context)
 	int len=0;
 	
 	
-	if(context->conf.getOverWriteCCFiles()==true)
+	if(context->conf.getOverWriteCCFiles())
 	{
 		memset(ipstring,0,100);
 		memset(framedip,0,16);

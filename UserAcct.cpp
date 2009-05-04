@@ -995,7 +995,7 @@ int UserAcct::deleteCcdFile(PluginContext * context)
 {
 	string filename;
 	filename = context->conf.getCcdPath()+ this->getCommonname();
-	if(context->conf.getOverWriteCCFiles()==true)
+	if(context->conf.getOverWriteCCFiles())
 	{
 		remove(filename.c_str());
 	}

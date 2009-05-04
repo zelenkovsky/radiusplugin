@@ -270,7 +270,7 @@ int main_test (void)
 	//check if there are servers
 	try
 	{
-		if(serverlist->empty()==true)
+		if(serverlist->empty())
 		{
 			throw(string("RADIUS-CLASS: No servers defined!"));
 		}
