@@ -145,12 +145,12 @@ int UserAuth::sendAcceptRequestPacket(PluginContext * context)
 	if (DEBUG (context->getVerbosity()))
 		cerr << getTime() << "RADIUS-PLUGIN: Send packet to " << server->getName().c_str() <<".\n";
 	//send the packet
-	if (packet.radiusSend(server)<0)
+	if (packet.radiusSend( server, context->radiusconf.getNASIpAddress() )<0)
 	{
 		cerr << getTime() << "RADIUS-PLUGIN: Packet was not send.\n";
 	}
 	//receive the packet
-	if (packet.radiusReceive(serverlist)==0)
+	if (packet.radiusReceive(serverlist, context->radiusconf.getNASIpAddress() )==0)
 	{
 		//is it a accept?
 		if(packet.getCode()==ACCESS_ACCEPT)

@@ -383,7 +383,7 @@ int RadiusPacket::unShapeRadiusPacket(void)
  * @return Returns the number of bytes successfully sent, 
  * SOCKET_ERROR or UNKNOWN_HOST in case of error.
  */
-int RadiusPacket::radiusSend(list<RadiusServer>::iterator server)
+int RadiusPacket::radiusSend( list<RadiusServer>::iterator server, const char * bind_ip )
 {
  
 	int					socket2Radius;
@@ -436,9 +436,9 @@ int RadiusPacket::radiusSend(list<RadiusServer>::iterator server)
 	}
     
 	//	Bind any port
-    cliAddr.sin_family=AF_INET;
-    cliAddr.sin_addr.s_addr=htonl(INADDR_ANY);
-    cliAddr.sin_port=htons(0);
+    cliAddr.sin_family = AF_INET;
+    cliAddr.sin_addr.s_addr = inet_addr( bind_ip );
+    cliAddr.sin_port = htons(0);
  	 	
 	//Bind the socket port,
     if(bind(socket2Radius,(struct sockaddr*)&cliAddr,sizeof(struct sockaddr))<0)
@@ -464,7 +464,7 @@ int RadiusPacket::radiusSend(list<RadiusServer>::iterator server)
  * @param serverlist : A list of radius server. 
  * @return Returns 0 if everything is ok, else ALLOC_ERROR,  UNKNOWN_HOST, WRONG_AUTHENTICATOR_IN_RECV_PACKET or NO_RESPONSE in case of error.
  */
-int RadiusPacket::radiusReceive(list<RadiusServer> *serverlist)
+int RadiusPacket::radiusReceive( list<RadiusServer> *serverlist, const char * bind_ip )
 {
 	
 	list<RadiusServer>::iterator server;
@@ -541,7 +541,7 @@ int RadiusPacket::radiusReceive(list<RadiusServer> *serverlist)
 				//the server retries
 				if(retries <= server->getRetry())
 				{
-					this->radiusSend(server);
+					this->radiusSend( server, bind_ip );
 				}
 			}
 			retries++;

@@ -197,13 +197,13 @@ int UserAcct::sendUpdatePacket(PluginContext *context)
 	}
 	
 	//send the packet to the server
-	if (packet.radiusSend(server)<0)
+	if (packet.radiusSend( server, context->radiusconf.getNASIpAddress() )<0)
 	{
 		cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND-ACCT:  Packet was not send.\n";
 	}
 	
 	//get the response
-	if (packet.radiusReceive(serverlist)>=0)
+	if (packet.radiusReceive(serverlist, context->radiusconf.getNASIpAddress() )>=0)
 	{
 		//is the packet a ACCOUNTING_RESPONSE?
 		if(packet.getCode()==ACCOUNTING_RESPONSE)
@@ -344,13 +344,13 @@ int UserAcct::sendStartPacket(PluginContext * context)
 	}
 	
 	//send the packet	
-	if (packet.radiusSend(server)<0)
+	if (packet.radiusSend( server, context->radiusconf.getNASIpAddress() )<0)
 	{
 		cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND-ACCT:  Packet was not send.\n";
 	}
 	
 	//receive the response
-	if (packet.radiusReceive(serverlist)>=0)
+	if (packet.radiusReceive(serverlist, context->radiusconf.getNASIpAddress() )>=0)
 	{
 		//is is a accounting resopnse ?
 		if(packet.getCode()==ACCOUNTING_RESPONSE)
@@ -526,13 +526,13 @@ int UserAcct::sendStopPacket(PluginContext * context)
 	}
 	
 	//send the packet
-	if (packet.radiusSend(server)<0)
+	if (packet.radiusSend( server, context->radiusconf.getNASIpAddress() )<0)
 	{
 		cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND-ACCT:  Packet was not send.\n";
 	}
 	
 	//get the response
-	if (packet.radiusReceive(serverlist)>=0)
+	if (packet.radiusReceive(serverlist, context->radiusconf.getNASIpAddress() )>=0)
 	{
 		//is it an accounting response
 		if(packet.getCode()==ACCOUNTING_RESPONSE)

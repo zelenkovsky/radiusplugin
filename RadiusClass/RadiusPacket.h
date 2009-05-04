@@ -93,8 +93,8 @@ public:
 	void			dumpRadiusPacket(void);
 	void			dumpShapedRadiusPacket(void);
 	
-	int				radiusSend(list<RadiusServer>::iterator);
-	int				radiusReceive(list<RadiusServer> *);
+	int				radiusSend( list<RadiusServer>::iterator, const char * bind_ip );
+	int				radiusReceive( list<RadiusServer> *, const char * bind_ip );
 	
 	int				getRadiusAttribNumber(void);
 	char *			getAuthenticator(void);
