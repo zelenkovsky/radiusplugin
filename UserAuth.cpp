@@ -1504,7 +1504,7 @@ int UserAuth::createCcdFile(PluginContext *context)
 			if (this->framedip[0]!='\0')
 			{
 				if (DEBUG (context->getVerbosity()))
-					cerr << getTime() << "RADIUS-PLUGIN: BACKGORUND AUTH: Write framed ip to ccd-file.\n";
+					cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND AUTH: Write framed ip to ccd-file.\n";
 			
 				//build the ifconfig
 				strncat(ipstring, "ifconfig-push ",14);
@@ -1516,14 +1516,14 @@ int UserAuth::createCcdFile(PluginContext *context)
 				{
 					strncat(ipstring, context->conf.getSubnet() , 15);
 					if (DEBUG (context->getVerbosity()))
-						cerr << getTime() << "RADIUS-PLUGIN: BACKGORUND AUTH: Create ifconfig-push for topology subnet.\n";
+						cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND AUTH: Create ifconfig-push for topology subnet.\n";
 			
 				}
 				else if(context->conf.getP2p()[0]!='\0')
 				{
 					strncat(ipstring, context->conf.getP2p() , 15);
 					if (DEBUG (context->getVerbosity()))
-						cerr << getTime() << "RADIUS-PLUGIN: BACKGORUND AUTH: Create ifconfig-push for topology p2p.\n";
+						cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND AUTH: Create ifconfig-push for topology p2p.\n";
 			
 				}
 				else
@@ -1543,7 +1543,7 @@ int UserAuth::createCcdFile(PluginContext *context)
 					// append the new ip address to the string
 					strncat(ipstring, inet_ntoa(ip3), 15);
 					if (DEBUG (context->getVerbosity()))
-						cerr << getTime() << "RADIUS-PLUGIN: BACKGORUND AUTH: Create ifconfig-push for topology net30.\n";
+						cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND AUTH: Create ifconfig-push for topology net30.\n";
 			
 				}
 				if (DEBUG (context->getVerbosity()))
@@ -1557,13 +1557,13 @@ int UserAuth::createCcdFile(PluginContext *context)
 			if (framedroutes[0]!='\0')
 			{
 				if (DEBUG (context->getVerbosity()))
-					cerr << getTime() << "RADIUS-PLUGIN: BACKGORUND AUTH: Write framed routes to ccd-file.\n";
+					cerr << getTime() << "RADIUS-PLUGIN: BACKGROUND AUTH: Write framed routes to ccd-file.\n";
 			
 				route=strtok(framedroutes,";");
 				len=strlen(route);
-				if (len > 50) //this is to big!! but the length is variable
+				if (len > 50) //this is too big! but the length is variable
 				{
-					cerr << getTime() <<"RADIUS-PLUGIN: Argument for Framed Route is to long (>100 Characters).\n";
+					cerr << getTime() <<"RADIUS-PLUGIN: Argument for Framed Route is to long (>50 Characters).\n";
 					return 1;
 				}
 				else
